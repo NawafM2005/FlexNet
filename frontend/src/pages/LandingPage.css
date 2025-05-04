@@ -1,5 +1,12 @@
+body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
 .landing-page-main {
-    height: 100%;           /* Viewport height = full screen */
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;      /* horizontal centering */
@@ -191,23 +198,3 @@
     color: red;
     font-weight: bold; /* optional */
 }  
-
-footer {
-    background-color: #ffffff;
-    color: #000000;
-    padding: 20px 0;
-    text-align: center;
-    bottom: 0;
-    width: 100%;
-    font-weight: bold;
-}
-
-footer a {
-    color: rgb(0, 0, 0);
-    text-decoration: none;
-    margin: 0 10px;
-}
-
-footer a:hover {
-    color: rgb(255, 75, 75);
-}

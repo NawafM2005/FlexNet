@@ -2,7 +2,9 @@
 import React from 'react';
 import './LandingPage.css';
 import flexnetLogo from '../Images/logo.png';
+import Navbar from '../components/Navbar';
 import { Link } from 'react-router-dom';
+import Footer from '../components/Footer';
 
 // Define the page component
 function LandingPage() {
@@ -10,16 +12,14 @@ function LandingPage() {
   // Return JSX (the visible page content)
   return (
     <div className='landing-page-main'>
-        <div className="landing-page-navbar">
-            <img src={flexnetLogo} alt="FlexNet Logo" className="logo-img" />
-        </div>
+       <Navbar />
 
         <div className="landing-page-header">
             <h1 className="landing-title">Level Up Your Fitness.</h1>
             <p className="landing-subtitle">Track your workouts. Connect with others. Share your journey.</p>
             <div className="landing-header-buttons">
                 <Link to="/SignupPage" className="landing-header-btn">Get Started</Link>
-                <Link to="/login" className="landing-header-btn-outline">Log In</Link>
+                <Link to="/LoginPage" className="landing-header-btn-outline">Log In</Link>
             </div>
         </div>
 
@@ -84,15 +84,7 @@ function LandingPage() {
                 </div>
             </ul>
         </div>
-        
-        <footer>
-            <p>&copy; 2025 FlexNet. All Rights Reserved.</p>
-            <nav>
-                <a href="index.html">Home</a>
-                <a href="contactus.html">Login</a>
-                <a href="contactus.html">SignUp</a>
-            </nav>
-        </footer>
+        <Footer />
     </div>
   );
 }
