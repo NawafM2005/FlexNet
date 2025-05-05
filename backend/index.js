@@ -10,10 +10,13 @@ const port = 5050;
 app.use(express.json());    // read JSON body from requests
 
 app.use(cors({
-  origin: 'http://localhost:3000', // Replace with the frontend URL
+  origin: 'http://localhost:3000',
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
 }));
+
+const jwt = require('jsonwebtoken');
+const JWT_SECRET = process.env.JWT_SECRET;
 
 // Database connection
 const pool = new Pool({
@@ -60,6 +63,7 @@ app.post('/api/auth/register', async (req, res) => {
     );
 
     const newUser = result.rows[0];
+    sendToken(res, newUser);
 
     // Return success response
     res.status(201).json({
@@ -72,7 +76,59 @@ app.post('/api/auth/register', async (req, res) => {
   }
 });
 
+app.post('/api/auth/login', async (req, res) => {
+  const { username_email, password } = req.body;
+
+  try {
+    // Check if the user exists by email OR username
+    const userResult = await pool.query(
+      'SELECT * FROM users WHERE email = $1 OR username = $1',
+      [username_email]
+    );
+
+    if (userResult.rows.length === 0) {
+      return res.status(400).json({ message: 'Invalid email/username or password.' });
+    }
+
+    const user = userResult.rows[0]; // Get user
+
+    // Compare passwords
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: 'Invalid email/username or password.' });
+    }
+
+    sendToken(res, user);
+    res.status(200).json({
+      message: 'Login successful!',
+      user: {
+        id: user.id,
+        username: user.username,
+        email: user.email
+      }
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error. Please try again later.' });
+  }
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+
+const sendToken = (res, user) => {
+  const token = jwt.sign(
+    { id: user.id, username: user.username, email: user.email },
+    JWT_SECRET,
+    { expiresIn: '7d' }
+  );
+
+  res.cookie('token', token, {
+    httpOnly: true,
+    secure: false,
+    sameSite: 'Lax',
+    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+  });
+};

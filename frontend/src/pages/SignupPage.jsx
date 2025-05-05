@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './SignUpPage.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { redirect, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const SignupPage = () => {
 
