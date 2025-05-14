@@ -17,7 +17,8 @@ const Dashboard = () => {
                 <a onClick={() => setCurrClicked("Profile")} style={currClicked === "Profile" ? { backgroundColor: 'rgb(255, 0, 81)', pointerEvents: 'none'}: {}}>Profile</a>
             </div>
 
-            <Profile />
+            {currClicked === "Profile" && <Profile />}
+            
             <Footer />
         </div>
     );
