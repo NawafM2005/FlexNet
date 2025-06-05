@@ -1,18 +1,33 @@
+body {
+  overflow: hidden;
+}
+
 .profile_main {
-    display: grid;
-    grid-template-columns: 1fr 2fr 2fr; /* 3 equal columns */
-    gap: 40px;
-    padding: 20px;
+    display: flex;
+    flex-direction: row;
     margin-top: 50px;
+    height: 74vh;
+    justify-content: center;
+    gap: 50px;
+}
+
+.personal_section {
+    display: flex;
+    flex-direction: column;
+    gap: 90px;
 }
 
 .profile_pic_section {
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: rgb(255, 219, 228);
     padding: 50px 50px;
     border-radius: 10px;
+    width: 400px;
+    height: 500px;
+    margin-top: 10px;
 }
 
 .profile_pic_section img {
@@ -27,4 +42,97 @@
     flex-direction: row;
     gap: 15px;
     list-style-type: none;
+}
+
+.personal_info_section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.personal_stats_section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.personal_info_section form {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.personal_stats_section form {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.personal_group {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    padding: 5px 5px;
+}
+
+.personal_group label {
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+    width: 200px;
+}
+
+.personal_group input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 200px;
+    background-color: rgba(222, 222, 222, 0.35);
+}
+
+.personal_group select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 200px;
+    background-color: rgba(222, 222, 222, 0.35);
+}
+
+.btn_section {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.edit_btn {
+    background-color: #4a3d3d;
+    color: rgb(255, 255, 255);
+    padding: 12px 24px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.edit_btn:hover {
+    background-color: rgb(36, 31, 31);
+    color: rgb(255, 255, 255);
+}
+
+.save_btn {
+    background-color: #ff5252;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.save_btn:hover {
+    background-color: #fc3030;
+    color: black;
 }
